@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 650" width="1180" height="650" role="img" aria-labelledby="title desc">
+  <title id="title">Схема базы данных портала «Едем, но это не точно»</title>
+  <desc id="desc">Пять таблиц: User, RefreshToken, CarBrand, CarModel и TestDriveRequest, а также связи между ними.</desc>
+
+  <defs>
+    <style>
+      .bg { fill: #f7f4ee; }
+      .title { fill: #1d1d1b; font: 700 21px 'Segoe UI', Arial, sans-serif; letter-spacing: -.02em; }
+      .subtitle { fill: #6c6a63; font: 13px 'Segoe UI', Arial, sans-serif; }
+      .entity { fill: #fffdf8; stroke: #1d1d1b; stroke-width: 1.4; }
+      .head { fill: #1d1d1b; }
+      .entity-name { fill: #ffffff; font: 700 14px 'Segoe UI', Arial, sans-serif; letter-spacing: .04em; }
+      .entity-tag { fill: rgba(255,255,255,.45); font: 10px 'Segoe UI', Arial, sans-serif; letter-spacing: .16em; }
+      .row { stroke: #e9e3d7; stroke-width: 1; }
+      .attr { fill: #2b2a27; font: 12.5px 'Segoe UI', Arial, sans-serif; }
+      .type { fill: #85817a; font: 11.5px 'Consolas', 'Courier New', monospace; }
+      .pk { fill: #d94f2b; font: 700 9.5px 'Segoe UI', Arial, sans-serif; letter-spacing: .08em; }
+      .fk { fill: #2f6f5e; font: 700 9.5px 'Segoe UI', Arial, sans-serif; letter-spacing: .08em; }
+      .uq { fill: #9a7424; font: 700 9.5px 'Segoe UI', Arial, sans-serif; letter-spacing: .08em; }
+      .relation { fill: none; stroke: #6c6a63; stroke-width: 1.6; }
+      .rel-label { fill: #1d1d1b; font: 700 12px 'Segoe UI', Arial, sans-serif; paint-order: stroke; stroke: #f7f4ee; stroke-width: 5px; stroke-linejoin: round; }
+      .rel-caption { fill: #6c6a63; font: 11.5px 'Segoe UI', Arial, sans-serif; paint-order: stroke; stroke: #f7f4ee; stroke-width: 5px; stroke-linejoin: round; }
+      .legend { fill: #1d1d1b; font: 700 10px 'Segoe UI', Arial, sans-serif; letter-spacing: .08em; }
+      .note { fill: #6c6a63; font: 11.5px 'Segoe UI', Arial, sans-serif; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1180" height="650" rx="0"/>
+
+  <text class="title" x="50" y="42">Схема базы данных · «Едем, но это не точно»</text>
+  <text class="subtitle" x="50" y="61">SQLite · Prisma ORM · 5 таблиц</text>
+
+  <!-- Легенда -->
+  <text class="pk" x="906" y="38">PK</text><text class="note" x="930" y="38">первичный ключ</text>
+  <text class="fk" x="1032" y="38">FK</text><text class="note" x="1056" y="38">внешний ключ</text>
+  <text class="uq" x="906" y="56">UQ</text><text class="note" x="930" y="56">уникальное поле</text>
+
+  <!-- Связи -->
+  <path class="relation" d="M350 210 H395 V370 H800"/>
+  <text class="rel-label" x="358" y="202">1</text>
+  <text class="rel-label" x="788" y="364">N</text>
+  <text class="rel-caption" x="565" y="363">оформляет заявки</text>
+
+  <path class="relation" d="M200 310 V400"/>
+  <text class="rel-label" x="210" y="338">1</text>
+  <text class="rel-label" x="210" y="394">N</text>
+  <text class="rel-caption" x="220" y="369">сессии</text>
+
+  <path class="relation" d="M565 156 V225"/>
+  <text class="rel-label" x="575" y="178">1</text>
+  <text class="rel-label" x="575" y="219">N</text>
+
+  <path class="relation" d="M690 285 H800"/>
+  <text class="rel-label" x="699" y="277">1</text>
+  <text class="rel-label" x="788" y="277">N</text>
+
+  <!-- User -->
+  <g>
+    <rect class="entity" x="50" y="70" width="300" height="240" rx="10"/>
+    <path class="head" d="M60 70h280a10 10 0 0 1 10 10v22H50V80a10 10 0 0 1 10-10Z"/>
+    <text class="entity-name" x="64" y="92">User</text>
+    <text class="entity-tag" x="336" y="91" text-anchor="end">ПОЛЬЗОВАТЕЛЬ</text>
+
+    <text class="attr" x="64" y="127">id</text><text class="type" x="172" y="127">Int</text><text class="pk" x="336" y="127" text-anchor="end">PK</text>
+    <line class="row" x1="50" y1="134" x2="350" y2="134"/>
+    <text class="attr" x="64" y="149">login</text><text class="type" x="172" y="149">String</text><text class="uq" x="336" y="149" text-anchor="end">UQ</text>
+    <line class="row" x1="50" y1="156" x2="350" y2="156"/>
+    <text class="attr" x="64" y="171">passwordHash</text><text class="type" x="172" y="171">String</text>
+    <line class="row" x1="50" y1="178" x2="350" y2="178"/>
+    <text class="attr" x="64" y="193">fullName</text><text class="type" x="172" y="193">String</text>
+    <line class="row" x1="50" y1="200" x2="350" y2="200"/>
+    <text class="attr" x="64" y="215">phone</text><text class="type" x="172" y="215">String</text>
+    <line class="row" x1="50" y1="222" x2="350" y2="222"/>
+    <text class="attr" x="64" y="237">email</text><text class="type" x="172" y="237">String</text><text class="uq" x="336" y="237" text-anchor="end">UQ</text>
+    <line class="row" x1="50" y1="244" x2="350" y2="244"/>
+    <text class="attr" x="64" y="259">role</text><text class="type" x="172" y="259">String</text><text class="note" x="336" y="259" text-anchor="end">USER / ADMIN</text>
+    <line class="row" x1="50" y1="266" x2="350" y2="266"/>
+    <text class="attr" x="64" y="281">createdAt</text><text class="type" x="172" y="281">DateTime</text>
+    <line class="row" x1="50" y1="288" x2="350" y2="288"/>
+    <text class="attr" x="64" y="303">updatedAt</text><text class="type" x="172" y="303">DateTime</text>
+  </g>
+
+  <!-- RefreshToken -->
+  <g>
+    <rect class="entity" x="50" y="400" width="300" height="174" rx="10"/>
+    <path class="head" d="M60 400h280a10 10 0 0 1 10 10v22H50v-22a10 10 0 0 1 10-10Z"/>
+    <text class="entity-name" x="64" y="422">RefreshToken</text>
+    <text class="entity-tag" x="336" y="421" text-anchor="end">СЕССИЯ</text>
+
+    <text class="attr" x="64" y="457">jti</text><text class="type" x="172" y="457">String</text><text class="pk" x="336" y="457" text-anchor="end">PK</text>
+    <line class="row" x1="50" y1="464" x2="350" y2="464"/>
+    <text class="attr" x="64" y="479">tokenHash</text><text class="type" x="172" y="479">String</text>
+    <line class="row" x1="50" y1="486" x2="350" y2="486"/>
+    <text class="attr" x="64" y="501">userId</text><text class="type" x="172" y="501">Int</text><text class="fk" x="336" y="501" text-anchor="end">FK</text>
+    <line class="row" x1="50" y1="508" x2="350" y2="508"/>
+    <text class="attr" x="64" y="523">expiresAt</text><text class="type" x="172" y="523">DateTime</text>
+    <line class="row" x1="50" y1="530" x2="350" y2="530"/>
+    <text class="attr" x="64" y="545">createdAt</text><text class="type" x="172" y="545">DateTime</text>
+    <line class="row" x1="50" y1="552" x2="350" y2="552"/>
+    <text class="attr" x="64" y="567">revokedAt</text><text class="type" x="172" y="567">DateTime?</text>
+  </g>
+
+  <!-- CarBrand -->
+  <g>
+    <rect class="entity" x="440" y="70" width="250" height="86" rx="10"/>
+    <path class="head" d="M450 70h230a10 10 0 0 1 10 10v22H440V80a10 10 0 0 1 10-10Z"/>
+    <text class="entity-name" x="454" y="92">CarBrand</text>
+    <text class="entity-tag" x="676" y="91" text-anchor="end">МАРКА</text>
+
+    <text class="attr" x="454" y="127">id</text><text class="type" x="554" y="127">Int</text><text class="pk" x="676" y="127" text-anchor="end">PK</text>
+    <line class="row" x1="440" y1="134" x2="690" y2="134"/>
+    <text class="attr" x="454" y="149">name</text><text class="type" x="554" y="149">String</text><text class="uq" x="676" y="149" text-anchor="end">UQ</text>
+  </g>
+
+  <!-- CarModel -->
+  <g>
+    <rect class="entity" x="440" y="225" width="250" height="160" rx="10"/>
+    <path class="head" d="M450 225h230a10 10 0 0 1 10 10v22H440v-22a10 10 0 0 1 10-10Z"/>
+    <text class="entity-name" x="454" y="247">CarModel</text>
+    <text class="entity-tag" x="676" y="246" text-anchor="end">МОДЕЛЬ</text>
+
+    <text class="attr" x="454" y="282">id</text><text class="type" x="554" y="282">Int</text><text class="pk" x="676" y="282" text-anchor="end">PK</text>
+    <line class="row" x1="440" y1="289" x2="690" y2="289"/>
+    <text class="attr" x="454" y="304">brandId</text><text class="type" x="554" y="304">Int</text><text class="fk" x="676" y="304" text-anchor="end">FK</text>
+    <line class="row" x1="440" y1="311" x2="690" y2="311"/>
+    <text class="attr" x="454" y="326">name</text><text class="type" x="554" y="326">String</text><text class="uq" x="676" y="326" text-anchor="end">UQ*</text>
+    <line class="row" x1="440" y1="333" x2="690" y2="333"/>
+    <text class="attr" x="454" y="348">price</text><text class="type" x="554" y="348">Int</text><text class="note" x="676" y="348" text-anchor="end">₽</text>
+    <line class="row" x1="440" y1="355" x2="690" y2="355"/>
+    <text class="attr" x="454" y="370">quantity</text><text class="type" x="554" y="370">Int</text><text class="note" x="676" y="370" text-anchor="end">≥ 0</text>
+  </g>
+
+  <!-- TestDriveRequest -->
+  <g>
+    <rect class="entity" x="800" y="90" width="330" height="372" rx="10"/>
+    <path class="head" d="M810 90h310a10 10 0 0 1 10 10v22H800V100a10 10 0 0 1 10-10Z"/>
+    <text class="entity-name" x="814" y="112">TestDriveRequest</text>
+    <text class="entity-tag" x="1116" y="111" text-anchor="end">ЗАЯВКА</text>
+
+    <text class="attr" x="814" y="147">id</text><text class="type" x="958" y="147">Int</text><text class="pk" x="1116" y="147" text-anchor="end">PK</text>
+    <line class="row" x1="800" y1="154" x2="1130" y2="154"/>
+    <text class="attr" x="814" y="169">userId</text><text class="type" x="958" y="169">Int</text><text class="fk" x="1116" y="169" text-anchor="end">FK</text>
+    <line class="row" x1="800" y1="176" x2="1130" y2="176"/>
+    <text class="attr" x="814" y="191">carModelId</text><text class="type" x="958" y="191">Int</text><text class="fk" x="1116" y="191" text-anchor="end">FK</text>
+    <line class="row" x1="800" y1="198" x2="1130" y2="198"/>
+    <text class="attr" x="814" y="213">address</text><text class="type" x="958" y="213">String</text>
+    <line class="row" x1="800" y1="220" x2="1130" y2="220"/>
+    <text class="attr" x="814" y="235">contactPhone</text><text class="type" x="958" y="235">String</text>
+    <line class="row" x1="800" y1="242" x2="1130" y2="242"/>
+    <text class="attr" x="814" y="257">scheduledAt</text><text class="type" x="958" y="257">DateTime</text>
+    <line class="row" x1="800" y1="264" x2="1130" y2="264"/>
+    <text class="attr" x="814" y="279">licenseSeries</text><text class="type" x="958" y="279">String</text>
+    <line class="row" x1="800" y1="286" x2="1130" y2="286"/>
+    <text class="attr" x="814" y="301">licenseNumber</text><text class="type" x="958" y="301">String</text>
+    <line class="row" x1="800" y1="308" x2="1130" y2="308"/>
+    <text class="attr" x="814" y="323">licenseIssuedAt</text><text class="type" x="958" y="323">DateTime</text>
+    <line class="row" x1="800" y1="330" x2="1130" y2="330"/>
+    <text class="attr" x="814" y="345">paymentType</text><text class="type" x="958" y="345">String</text><text class="note" x="1116" y="345" text-anchor="end">CASH / CARD</text>
+    <line class="row" x1="800" y1="352" x2="1130" y2="352"/>
+    <text class="attr" x="814" y="367">status</text><text class="type" x="958" y="367">String</text><text class="note" x="1116" y="367" text-anchor="end">PENDING / …</text>
+    <line class="row" x1="800" y1="374" x2="1130" y2="374"/>
+    <text class="attr" x="814" y="389">rejectionReason</text><text class="type" x="958" y="389">String?</text>
+    <line class="row" x1="800" y1="396" x2="1130" y2="396"/>
+    <text class="attr" x="814" y="411">searchIndex</text><text class="type" x="958" y="411">String</text>
+    <line class="row" x1="800" y1="418" x2="1130" y2="418"/>
+    <text class="attr" x="814" y="433">createdAt</text><text class="type" x="958" y="433">DateTime</text>
+    <line class="row" x1="800" y1="440" x2="1130" y2="440"/>
+    <text class="attr" x="814" y="455">updatedAt</text><text class="type" x="958" y="455">DateTime</text>
+  </g>
+
+  <text class="note" x="50" y="610">UQ* — составной уникальный ключ CarModel(brandId, name).</text>
+  <text class="note" x="50" y="628">role, status и paymentType хранятся строками: SQLite не поддерживает enum, значения проверяются приложением.</text>
+  <text class="note" x="50" y="646">Связи: User 1—N RefreshToken, User 1—N TestDriveRequest, CarBrand 1—N CarModel, CarModel 1—N TestDriveRequest.</text>
+</svg>
